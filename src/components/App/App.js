@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Favorites from './Favortites/Favorites';
-import Search from './Search/Search';
+import Search from '../Search/Search';
 import './App.css';
 
 function App(props) {
