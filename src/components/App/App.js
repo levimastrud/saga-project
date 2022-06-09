@@ -18,7 +18,7 @@ function App(props) {
         <Route path='/search'>
           <Search/>
         </Route>
-        <Route path='/favorites'>
+        <Route path='/favorites/:favId'>
           <Favorites/>
         </Route>
       </Switch>
