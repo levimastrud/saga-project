@@ -10,4 +10,58 @@ import createSagaMiddleware from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-ReactDOM.render(<Provider /*store ={storeInstance}*/><App /></Provider>, document.getElementById('root'));
+function* watcherSaga(){
+yield takeEvery(`FETCH_FAVS`,fetchFavsSaga);
+
+yield takeEvery(`ADD_FAVS`,addFavsSagas);
+
+}
+
+function* fetchFavsSaga(action){
+try{
+console.log("in the fetch favs saga")
+const response = yield axios.get('/api/favorite')
+
+yield put({type: 'SET_FAVS', payload: response.data})
+
+} catch {
+    console.error(`error FETCHing fruit`,error);
+}
+}
+
+
+function* addFavsSagas(action){
+    try{
+    console.log("in the ADD favs saga")
+    
+    yield put({type: 'FETCH_FAVS'})
+    
+    } catch {
+        console.error(`error ADDing fruit`,error);
+    }
+    }
+
+const favsReducer = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_FAVS':
+            return action.payload;
+        default: 
+            return state;
+    }
+}
+
+
+const sagaMiddleware = createSagaMiddleware();
+
+const storeInstance = createStore(
+    combineReducers({
+        favsReducer
+    }),
+    applyMiddleware(sagaMiddleware, logger)
+)
+
+
+sagaMiddleware.run(watcherSaga)
+
+
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
