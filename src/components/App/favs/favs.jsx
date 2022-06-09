@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -9,26 +9,26 @@ function FavsList() {
     console.log(params)
 
     let favsId = params.favId
-    const dispatch = dispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
 
 
-const favsList = useSelector(store => store.favsReducer);
+    const favsList = useSelector(store => store.favsReducer);
 
-useEffect(() => {
-    dispatch({type: 'FETCH_FAVS'})
-}, []);
+    useEffect(() => {
+        dispatch({ type: 'FETCH_FAVS' })
+    }, []);
 
 
-return (
-    <ul>
-        {favsList.map((favorite,index) => {
-            <li  key={index} >
-                <button onClick={() => history.push(`/favorites${favorite.id}`)} >Favorite</button>
-            </li>
-        })}
-    </ul>
-)
+    return (
+        <ul>
+            {/* {favsList.map((favorite, index) => {
+                <li key={index} >
+                    <button onClick={() => history.push(`/favorites${favorite.id}`)} >Favorite</button>
+                </li>
+            })} */}
+        </ul>
+    )
 
 }
 
