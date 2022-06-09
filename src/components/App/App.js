@@ -1,10 +1,28 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Favorites from './Favortites/Favorites';
+import Search from './Search/Search';
+import './App.css';
 
 function App(props) {
   return (
-    <div>
-      <h1>Giphy Search!</h1>
-    </div>
+    <Router>
+      <header>
+      <nav id='navbar'>
+        <h3><Link to='/search'>Search</Link></h3>
+        <h3><Link to='/favorites'>Favorites</Link></h3>
+      </nav>
+      </header>
+      <Switch>
+        <Route path='/search'>
+          <Search/>
+        </Route>
+        <Route path='/favorites'>
+          <Favorites/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
