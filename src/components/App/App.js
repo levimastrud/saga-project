@@ -1,18 +1,8 @@
 import React from 'react';
-<<<<<<< HEAD
-import Search from '../Search/search';
-
-function App(props) {
-  return (
-    <div>
-      <h1>Giphy Search!</h1>
-      <Search />
-    </div>
-=======
 import { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Favorites from './Favortites/Favorites';
-import Search from './Search/Search';
+import Search from '../Search/Search';
 import './App.css';
 
 function App(props) {
@@ -33,7 +23,6 @@ function App(props) {
         </Route>
       </Switch>
     </Router>
->>>>>>> bc7a29b3691b4a4c917a6a86789efd939e6f003b
   );
 }
 

@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 
 function Search() {
-    const dispatch = useDispatch();
-    const results = useSelector(store => store.search)
+    //const dispatch = useDispatch();
+    //const results = useSelector(store => store.search)
     let [searchInput, setSearchInput] = useState();
     let imgUrl = ``;
 

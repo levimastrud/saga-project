@@ -10,4 +10,4 @@ import createSagaMiddleware from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Provider /*store ={storeInstance}*/><App /></Provider>, document.getElementById('root'));
