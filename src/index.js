@@ -25,7 +25,7 @@ const response = yield axios.get('/api/favorite')
 yield put({type: 'SET_FAVS', payload: response.data})
 
 } catch {
-    console.error(`error FETCHing fruit`,error);
+    console.error(`error FETCHing fruit`);
 }
 }
 

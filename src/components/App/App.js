@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Favorites from './Favortites/Favorites';
-import Search from '../Search/Search';
+import Search from '../Search/search';
 import './App.css';
 
 function App(props) {
@@ -18,7 +18,7 @@ function App(props) {
         <Route path='/search'>
           <Search/>
         </Route>
-        <Route path='/favorites/:favId'>
+        <Route path='/favorites'>
           <Favorites/>
         </Route>
       </Switch>
