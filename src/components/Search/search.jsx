@@ -9,11 +9,11 @@ function Search() {
     const results = useSelector(store => store.search)
     let [searchInput, setSearchInput] = useState('');
     let imgUrl = ``;
+    let img2Url = '';
 
     function searchButton() {
-        imgUrl = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}=${searchInput}&limit=25&offset=0&rating=pg-13&lang=en`;
-        dispatch({ type: "SEARCH", payload: searchInput })
-        setSearchInput('');
+
+        console.log('search button', searchInput);
     }
 
     return (
