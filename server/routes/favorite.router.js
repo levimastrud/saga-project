@@ -8,8 +8,8 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  const queryText = 'SELECT url FROM favorites WHERE id=$1';
-  pool.query(queryText,[req.params.id]).then(
+  const queryText = 'SELECT * FROM favorites ';
+  pool.query(queryText).then(
     (result) => {res.send(result.rows)}
   ).catch((err) => {
     console.log('error completing SELECT favorite query',err)
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
-  const newFavorite = req.body;
+  const newFavorite = req.body.url;
   console.log('fav post', newFavorite);
   const queryText = 'INSERT INTO favorites ("url") VALUES($1)'
   const queryValues = newFavorite;
