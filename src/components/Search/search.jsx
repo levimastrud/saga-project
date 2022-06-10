@@ -10,6 +10,7 @@ function Search() {
     const dispatch = useDispatch();
     let results = results = useSelector(store => store.search)
     let [searchInput, setSearchInput] = useState("");
+    let [favorite, setFavorite] = useState("");
 
     console.log('results are ', results);
 
@@ -21,8 +22,14 @@ function Search() {
 
     function searchButton() {
         console.log('search button', searchInput);
+        
         dispatch({ type: "SEARCH", payload: searchInput })
         setSearchInput('')
+    }
+
+    function setFavorites(){
+
+        
     }
 
     return (
@@ -43,7 +50,7 @@ function Search() {
                                 <option value="food">Food</option>
                                 <option value="reaction">Reaction</option>
                             </select>
-                            <button>Add to favorites</button>
+                            <button onClick={() => dispatch({type: 'ADD_FAVS', payload:{url:image.images.original.url,search:searchInput}})}>Add to favorites</button>
                         </div>
                         <h3>"{image.title}"</h3>
                         <img src={image.images.original.url} alt="Giphy" style={{ height: '600px', maxWidth: '600px' }} />
