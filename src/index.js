@@ -56,7 +56,7 @@ function* addFavsSagas(action) {
     }
 }
 
-const favsReducer = (state = {}, action) => {
+const favsReducer = (state = [], action) => {
     console.log("in favs reducer")
     switch (action.type) {
         case 'SET_FAVS':
