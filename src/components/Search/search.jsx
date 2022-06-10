@@ -32,8 +32,8 @@ function Search() {
                 <button id="search" onClick={() => searchButton()}>Search</button>
             </div>
             {results ? results.map((image, i) => (
-                <div className="gallery">
-                    <div key={i}>
+                <div key={i} className="gallery">
+                    <div>
                         <div className="buttons">
                             <select name="genre" id="genre">
                                 <option value="" disabled selected>Genre</option>
