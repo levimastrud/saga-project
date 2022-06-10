@@ -12,31 +12,43 @@ function Search() {
     let [searchInput, setSearchInput] = useState("");
 
     console.log('results are ', results);
-    
+
 
     useEffect(() => {
     }, [])
 
-    
+
 
     function searchButton() {
         console.log('search button', searchInput);
-
-
         dispatch({ type: "SEARCH", payload: searchInput })
+        setSearchInput('')
     }
 
     return (
-        < div id="gallery">
-            <div>
-                <input value={searchInput} type="text" onChange={(event) => setSearchInput(event.target.value)} />
+        < div>
+            <div className="searchField">
+                <input placeholder = 'search' value={searchInput} type="text" onChange={(event) => setSearchInput(event.target.value)} />
                 <button id="search" onClick={() => searchButton()}>Search</button>
             </div>
-               {results ? results.map((image,i) => (
-            <div key={i}>
-                <img src={image.images.original.url} alt="Giphy" style={{ height: '600px', maxWidth: '600px' }} />
-            </div>
-               )  ): ''}
+            {results ? results.map((image, i) => (
+                <div className="gallery">
+                    <div key={i}>
+                        <div className="buttons">
+                            <select name="genre" id="genre">
+                                <option value="" disabled selected>Genre</option>
+                                <option value="funny">Funny</option>
+                                <option value="meme">Meme</option>
+                                <option value="stupid">Stupid</option>
+                                <option value="food">Food</option>
+                                <option value="reaction">Reaction</option>
+                            </select>
+                            <button>Add to favorites</button>
+                        </div>
+                        <img src={image.images.original.url} alt="Giphy" style={{ height: '600px', maxWidth: '600px' }} />
+                    </div>
+                </div>
+            )) : ''}
         </div>
     )
 
