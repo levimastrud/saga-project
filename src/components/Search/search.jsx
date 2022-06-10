@@ -20,6 +20,7 @@ function Search() {
 
     function searchButton() {
         console.log('search button', searchInput);
+        dispatch({type: 'ADD_FAVS'})
 
 
         dispatch({ type: "SEARCH", payload: searchInput })
