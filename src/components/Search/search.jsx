@@ -39,8 +39,8 @@ function Search() {
                 <button id="search" onClick={() => searchButton()}>Search</button>
             </div>
             {results ? results.map((image, i) => (
-                <div className="gallery">
-                    <div key={i}>
+                <div key={i} className="gallery">
+                    <div>
                         <div className="buttons">
                             <select name="genre" id="genre">
                                 <option value="" disabled selected>Genre</option>
@@ -52,6 +52,7 @@ function Search() {
                             </select>
                             <button onClick={() => dispatch({type: 'ADD_FAVS', payload:{url:image.images.original.url,search:searchInput}})}>Add to favorites</button>
                         </div>
+                        <h3>"{image.title}"</h3>
                         <img src={image.images.original.url} alt="Giphy" style={{ height: '600px', maxWidth: '600px' }} />
                     </div>
                 </div>
