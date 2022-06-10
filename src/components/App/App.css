@@ -49,3 +49,16 @@ nav {
 #navbar h3:hover{
     border-bottom: 2px solid white;
 }
+
+.filledStar, .hollowStar {
+    height: 3em;
+    margin: 5em;
+}
+
+.hollowStar {
+    fill: none;
+    stroke: #ff0000;
+    stroke-width: 1px;
+    stroke-dasharray: 2,2;
+    stroke-linejoin: round;
+  }
