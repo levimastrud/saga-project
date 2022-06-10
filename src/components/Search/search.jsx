@@ -45,6 +45,7 @@ function Search() {
                             </select>
                             <button>Add to favorites</button>
                         </div>
+                        <h3>"{image.title}"</h3>
                         <img src={image.images.original.url} alt="Giphy" style={{ height: '600px', maxWidth: '600px' }} />
                     </div>
                 </div>
