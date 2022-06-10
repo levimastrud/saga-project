@@ -34,6 +34,7 @@ function Search() {
                {results ? results.map((image,i) => (
             <div key={i}>
                 <img src={image.images.original.url} alt="Giphy" style={{ height: '600px', maxWidth: '600px' }} />
+                <button className="favorite">★</button>
             </div>
                )  ): ''}
         </div>
