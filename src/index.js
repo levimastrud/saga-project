@@ -10,52 +10,77 @@ import createSagaMiddleware from 'redux-saga';
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* watcherSaga(){
-yield takeEvery(`FETCH_FAVS`,fetchFavsSaga);
+function* watcherSaga() {
+    yield takeEvery(`FETCH_FAVS`, fetchFavsSaga);
 
-yield takeEvery(`ADD_FAVS`,addFavsSagas);
+    yield takeEvery(`ADD_FAVS`, addFavsSagas);
+
+    yield takeEvery(`SEARCH`, searchSaga)
 
 }
 
-function* fetchFavsSaga(action){
-try{
-console.log("in the fetch favs saga")
-const response = yield axios.get('/api/favorite')
+function* searchSaga(action) {
+    try {
+        console.log("in the search saga:", action.payload)
+        //const response = yield axios.get('/api/favorite')
+        const response = yield axios.post("/api/search", {search: action.payload})
+        console.log('after put: ', response.data);
 
-yield put({type: 'SET_FAVS', payload: response.data})
+        yield put({ type: 'SET_SEARCH', payload: response.data })
 
-} catch {
-    console.error(`error FETCHing favs`,error);
-}
-}
-
-
-function* addFavsSagas(action){
-    try{
-    console.log("in the ADD favs saga")
-    
-    yield put({type: 'FETCH_FAVS'})
-    
     } catch {
-        console.error(`error ADDing fav's`,error);
+        console.error(`error searching images`);
     }
+}
+
+function* fetchFavsSaga(action) {
+    try {
+        console.log("in the fetch favs saga")
+        const response = yield axios.get('/api/favorite')
+
+        yield put({ type: 'SET_FAVS', payload: response.data })
+
+    } catch {
+        console.error(`error FETCHing favs`);
     }
+}
+
+
+function* addFavsSagas(action) {
+    try {
+        console.log("in the ADD favs saga")
+
+        yield put({ type: 'FETCH_FAVS' })
+
+    } catch {
+        console.error(`error ADDing favs`, error);
+    }
+}
 
 const favsReducer = (state = [], action) => {
-    switch(action.type) {
+    switch (action.type) {
         case 'SET_FAVS':
             return action.payload;
-        default: 
+        default:
             return state;
     }
 }
 
+const searchReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SEARCH':
+            return action.payload.data;
+        default:
+            return state;
+    }
+}
 
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        favsReducer
+        favsReducer,
+        search: searchReducer
     }),
     applyMiddleware(sagaMiddleware, logger)
 )
