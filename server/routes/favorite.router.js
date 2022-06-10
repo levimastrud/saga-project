@@ -21,11 +21,10 @@ router.get('/', (req, res) => {
 // add a new favorite
 router.post('/', (req, res) => {
   const newFavorite = req.body;
+  console.log('fav post', newFavorite);
   const queryText = 'INSERT INTO favorites ("url") VALUES($1)'
-  const queryValues = [
-    favorite.url
-  ];
-  pool.query(queryText,queryValues)
+  const queryValues = newFavorite;
+  pool.query(queryText,[queryValues])
   .then(() => {res.sendStatus(201)})
   .catch((err) => {
     console.log("error completing SELECT Favorites query",err)

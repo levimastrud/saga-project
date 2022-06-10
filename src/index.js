@@ -24,8 +24,6 @@ function* searchSaga(action) {
         console.log("in the search saga:", action.payload)
         //const response = yield axios.get('/api/favorite')
         const response = yield axios.post("/api/search", {search: action.payload})
-        console.log('after put: ', response.data);
-
         yield put({ type: 'SET_SEARCH', payload: response.data })
 
     } catch {
@@ -49,12 +47,12 @@ function* fetchFavsSaga(action) {
 
 function* addFavsSagas(action) {
     try {
-        console.log("in the ADD favs saga")
-
+        console.log("in the ADD favs saga", action.payload);
+        yield axios.post("/api/favorite",  action.payload)
         yield put({ type: 'FETCH_FAVS' })
 
     } catch {
-        console.error(`error ADDing favs`, error);
+        console.error(err => `error ADDing favs`, err);
     }
 }
 

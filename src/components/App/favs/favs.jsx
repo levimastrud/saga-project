@@ -9,7 +9,7 @@ function FavsList() {
     console.log(params)
 
     let favsId = params.favId;
-    let favorite = favsList.find(favorite => favorite.id === Number(favsId))
+    let favorite = favsList.find(favorited => favorited.id === Number(favsId))
     console.log(`found favortie:`, favorite); 
 
     if(!favorite) return(
