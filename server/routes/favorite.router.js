@@ -1,15 +1,19 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const axios = require('axios')
 
 const router = express.Router();
+let favorite = []
+
 
 // return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
+  res.send(favorite);
 });
 
 // add a new favorite
 router.post('/', (req, res) => {
+  favorite.push(req.body)
   res.sendStatus(200);
 });
 
