@@ -2,11 +2,23 @@
     --slate: rgb(58, 58, 58);
 }
 
+@keyframes expand {
+    0%   {transform: scale(1.0)}
+    20%  {transform: scale(1.05)}
+    80%  {transform: scale(1.1)}
+  }
+
 body {
     color: rgb(58, 58, 58);
     font-family: Arial, Helvetica, sans-serif;
     margin: 1em;
     text-align: center;
+    background-color:coral;
+}
+
+input {
+    border: 1px solid var(--slate);
+    padding: .5em;
 }
 
 button {
@@ -31,21 +43,68 @@ a:active {
 
 nav {
     margin: 0;
+    border-bottom: 1px solid var(--slate);
+    background-color: coral;
 }
 
 #navbar {
     display: flex;
     justify-content: space-evenly;
-    background-color: coral;
     margin: -1em -1em 3em -1em;
+    position: sticky;
+    top: 0;
 }
 
 #navbar h3 {
-    color: white;
+    background-color: white;
+    border: 1px solid var(--slate);
+    padding: 25px;
+    color: var(--slate);
     padding: 5px;
-    border-bottom: 2px solid transparent;
+    font-size: 3em;
 }
 
-#navbar h3:hover{
-    border-bottom: 2px solid white;
+#navbar h3:hover {
+    background-color: var(--slate);
+    border: 1px solid white;
+    color: white;
 }
+
+.filledStar,
+.hollowStar {
+    height: 3em;
+    margin: 5em;
+}
+
+.hollowStar {
+    fill: none;
+    stroke: #ff0000;
+    stroke-width: 1px;
+    stroke-dasharray: 2, 2;
+    stroke-linejoin: round;
+}
+
+.searchField {
+    margin-bottom: 5em;
+}
+
+.gallery {
+    display: inline-flex;
+    border: 1px solid var(--slate);
+    width: auto;
+    height: auto;
+    margin: .5em;
+    padding: 1em;
+    background-color: white;
+}
+
+.gallery img{
+    margin: 1em 1em 1em 1em;
+    max-width: 100%;  
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.gallery img:hover {
+    animation: expand .3s ease 0s 1 normal forwards;
+  }
