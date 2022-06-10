@@ -5,6 +5,7 @@ import Favorites from './Favortites/Favorites';
 import Search from '../Search/search';
 import './App.css';
 import ReactDOM from 'react-dom'
+import FavsList from './favs/favs';
 
 function App(props) {
   return (
@@ -20,7 +21,7 @@ function App(props) {
           <Search/>
         </Route>
         <Route path='/favorites'>
-          <Favorites/>
+          <FavsList />
         </Route>
       </Switch>
     </Router>

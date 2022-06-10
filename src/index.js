@@ -37,9 +37,10 @@ function* fetchFavsSaga(action) {
     try {
         console.log("in the fetch favs saga")
         const response = yield axios.get('/api/favorite')
-
+        console.log(response.data)
+        
         yield put({ type: 'SET_FAVS', payload: response.data })
-
+        
     } catch {
         console.error(`error FETCHing favs`);
     }
@@ -57,7 +58,8 @@ function* addFavsSagas(action) {
     }
 }
 
-const favsReducer = (state = [], action) => {
+const favsReducer = (state = {}, action) => {
+    console.log("in favs reducer")
     switch (action.type) {
         case 'SET_FAVS':
             return action.payload;

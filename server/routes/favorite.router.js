@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // return all favorite images
-router.get('/:favId', (req, res) => {
+router.get('/', (req, res) => {
   const queryText = 'SELECT url FROM favorites WHERE id=$1';
   pool.query(queryText,[req.params.id]).then(
     (result) => {res.send(result.rows)}
