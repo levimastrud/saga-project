@@ -7,8 +7,8 @@ CREATE TABLE "favorites" (
     "id" SERIAL PRIMARY KEY,
     "url" VARCHAR (500) NOT NULL,
     "search" VARCHAR (100) NOT NULL,
-    "category" 
-)
+    "category" integer
+);
 
 -- Category table
 CREATE TABLE "category" (
