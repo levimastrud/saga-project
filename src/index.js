@@ -24,8 +24,6 @@ function* searchSaga(action) {
         console.log("in the search saga:", action.payload)
         //const response = yield axios.get('/api/favorite')
         const response = yield axios.post("/api/search", {search: action.payload})
-        console.log('after put: ', response.data);
-
         yield put({ type: 'SET_SEARCH', payload: response.data })
 
     } catch {
@@ -37,9 +35,10 @@ function* fetchFavsSaga(action) {
     try {
         console.log("in the fetch favs saga")
         const response = yield axios.get('/api/favorite')
-
+        console.log(response.data)
+        
         yield put({ type: 'SET_FAVS', payload: response.data })
-
+        
     } catch {
         console.error(`error FETCHing favs`);
     }
@@ -48,16 +47,17 @@ function* fetchFavsSaga(action) {
 
 function* addFavsSagas(action) {
     try {
-        console.log("in the ADD favs saga")
-
+        console.log("in the ADD favs saga", action.payload);
+        yield axios.post("/api/favorite",  action.payload)
         yield put({ type: 'FETCH_FAVS' })
 
     } catch {
-        console.error(`error ADDing favs`, error);
+        console.error(err => `error ADDing favs`, err);
     }
 }
 
-const favsReducer = (state = [], action) => {
+const favsReducer = (state = {}, action) => {
+    console.log("in favs reducer")
     switch (action.type) {
         case 'SET_FAVS':
             return action.payload;
